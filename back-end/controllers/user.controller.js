@@ -60,7 +60,7 @@ exports.login = (req,res) =>
                 var pass = bcrypt.compareSync(req.body.password,ans.password);
                 if(pass)
                 {
-                    res.status(200).send({ message: 'Login Successful', username: ans.username, email: ans.email, contact: ans.contact, walletBalance: ans.walletBalance });
+                    res.status(200).send({ message: 'Login Successful', username: ans.username, email: ans.email, contact: ans.contact, walletBalance: ans.walletBalance, admin: ans.admin });
                 }
                 else
                 {
