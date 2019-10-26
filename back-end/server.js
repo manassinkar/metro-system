@@ -24,3 +24,8 @@ app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use('/user',require('./routes/user.route'));
+app.use('/coupon',require('./routes/coupon.route'));
+app.use('/route',require('./routes/route.route'));
+app.use('/payment',require('./routes/payment.route'));
