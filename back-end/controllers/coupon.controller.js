@@ -88,3 +88,35 @@ exports.applyCoupon = (req) =>
         }
     });
 };
+
+exports.viewCoupons = (req,res) =>
+{
+    User.findOne({ username: req.query.username }, (err,ans) =>
+    {
+        if(err)
+        {
+            res.status(500).send({ message: 'Error while Checking user info',error: err });
+        }
+        else
+        {
+            if(ans)
+            {
+                Coupon.find({ code: { $nin: ans.usedCouponCodes } },(er,an) =>
+                {
+                    if(er)
+                    {
+                        res.status(500).send({ message: 'Error while fetching Coupon information', error:er });
+                    }
+                    else
+                    {
+                        res.status(200).send(an);
+                    }
+                });
+            }
+            else
+            {
+                res.status(404).send({ message: 'User does not exist' });
+            }
+        }
+    });
+};

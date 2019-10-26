@@ -38,3 +38,18 @@ exports.addRoute = (req,res) =>
         }
     });
 };
+
+exports.viewRoutes = (req,res) =>
+{
+    Route.find({},(err,ans) =>
+    {
+        if(err)
+        {
+            res.status(500).send({ message: 'Error while finding routes' });
+        }
+        else
+        {
+            res.status(200).send(ans);
+        }
+    })
+};
