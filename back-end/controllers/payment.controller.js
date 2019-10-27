@@ -34,7 +34,7 @@ exports.pay = (req,res) =>
                             couponCodeApplied: req.body.couponCodeApplied,
                             couponCode: couponCode,
                             orgPrice: req.body.price,
-                            finalrPrice: req.body.finalPrice
+                            finalPrice: finalPrice
                         }
                     );
                     payment.save((er) =>
@@ -50,11 +50,21 @@ exports.pay = (req,res) =>
                                 ans.usedCouponCodes.append(couponCode);
                             }
                             var newBalance = ans.walletBalance - finalPrice;
-                            User.updateOne({ username: ans.username },{ walletBalance: newBalance, usedCouponCodes: usedCouponCodes },(err) =>
+                            User.updateOne({ username: ans.username },{ walletBalance: newBalance, usedCouponCodes: usedCouponCodes },(erro) =>
                             {
-                                if(err)
+                                if(erro)
                                 {
-                                    res.status(500).send({ message: 'Account Updation Failed' });
+                                    Payment.deleteOne({ username: ans.username, couponCode: couponCode },(e) =>
+                                    {
+                                        if(e)
+                                        {
+                                            res.status(500).send({ message: 'Account Updation Failed, Payment Done' });
+                                        }
+                                        else
+                                        {
+                                            res.status(500).send({ message: 'Account Updation Failed' });
+                                        }
+                                    });
                                 }
                                 else
                                 {
