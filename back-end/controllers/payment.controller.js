@@ -3,15 +3,15 @@ const User = require('../models/user.model');
 
 exports.pay = (req,res) =>
 {
-    User.findOne({ username: req.body.username },(err,ans) =>
+    User.findOne({ username: req.body.username },(error,answer) =>
     {
-        if(err)
+        if(error)
         {
-            res.status(500).send({ message: 'Error while Checking user info', error: err });
+            res.status(500).send({ message: 'Error while Checking user info', error: error });
         }
         else
         {
-            if(ans)
+            if(answer)
             {
                 var finalPrice = 0;
                 var couponCode = null;
@@ -24,11 +24,11 @@ exports.pay = (req,res) =>
                 {
                     finalPrice = req.body.price;
                 }
-                if(finalPrice<ans.walletBalance)
+                if(finalPrice<answer.walletBalance)
                 {
                     var payment = new Payment(
                         {
-                            username: ans.username,
+                            username: answer.username,
                             a: req.body.a,
                             b: req.body.b,
                             couponCodeApplied: req.body.couponCodeApplied,
@@ -47,14 +47,14 @@ exports.pay = (req,res) =>
                         {
                             if(couponCode!=null)
                             {
-                                ans.usedCouponCodes.append(couponCode);
+                                answer.usedCouponCodes.push(couponCode);
                             }
-                            var newBalance = ans.walletBalance - finalPrice;
-                            User.updateOne({ username: ans.username },{ walletBalance: newBalance, usedCouponCodes: usedCouponCodes },(erro) =>
+                            var newBalance = answer.walletBalance - finalPrice;
+                            User.updateOne({ username: answer.username },{ walletBalance: newBalance, usedCouponCodes: answer.usedCouponCodes },(erro) =>
                             {
                                 if(erro)
                                 {
-                                    Payment.deleteOne({ username: ans.username, couponCode: couponCode },(e) =>
+                                    Payment.deleteOne({ username: answer.username, couponCode: couponCode },(e) =>
                                     {
                                         if(e)
                                         {
