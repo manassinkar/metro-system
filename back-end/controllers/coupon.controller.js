@@ -40,7 +40,7 @@ exports.addCoupon = (req,res) =>
     });
 };
 
-exports.applyCoupon = (req) =>
+exports.applyCoupon = (req,res) =>
 {
     User.findOne({ username: req.body.username },(err,ans) =>
     {
@@ -70,7 +70,10 @@ exports.applyCoupon = (req) =>
                             if(an)
                             {
                                 var price = req.body.price;
-                                price = Math.ceil(((100-an.percentageOff)/100)*price);
+                                var x = 100 - an.percentageOff;
+                                var y = x/100;
+                                y.toFixed(2);
+                                price = y*price;
                                 res.status(200).send({ message: 'Discount Applied', finalPrice: price });
                             }
                             else
@@ -101,17 +104,34 @@ exports.viewCoupons = (req,res) =>
         {
             if(ans)
             {
-                Coupon.find({ code: { $nin: ans.usedCouponCodes } },(er,an) =>
+                if(!ans.admin)
                 {
-                    if(er)
+                    Coupon.find({ code: { $nin: ans.usedCouponCodes } },(er,an) =>
                     {
-                        res.status(500).send({ message: 'Error while fetching Coupon information', error:er });
-                    }
-                    else
+                        if(er)
+                        {
+                            res.status(500).send({ message: 'Error while fetching Coupon information', error:er });
+                        }
+                        else
+                        {
+                            res.status(200).send(an);
+                        }
+                    });
+                }
+                else
+                {
+                    Coupon.find({},(er,an) =>
                     {
-                        res.status(200).send(an);
-                    }
-                });
+                        if(er)
+                        {
+                            res.status(500).send({ message: 'Error while fetching Coupon information', error:er });
+                        }
+                        else
+                        {
+                            res.status(200).send(an);
+                        }
+                    });
+                }
             }
             else
             {
