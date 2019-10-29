@@ -18,6 +18,17 @@ export class PaymentService {
     {
       return res;
     }));
+  }
 
+  viewPayments()
+  {
+    const user = localStorage.getItem('currentUser');
+    const userJ = JSON.parse(user);
+    const username = userJ.username;
+    const admin = userJ.admin;
+    return this.http.get<any>(`http://localhost:3000/payment/viewPayments?username=`+username+`&admin=`+admin).pipe(map(res =>
+    {
+      return res;
+    }));
   }
 }

@@ -96,6 +96,9 @@ export class ViewRoutesComponent implements OnInit {
   dontApplyCoupon()
   {
     this.step++;
+    this.finalPrice = this.orgPrice;
+    this.coupoCodeApplied = false;
+    this.couponCode = '';
   }
 
   pay()

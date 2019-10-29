@@ -86,3 +86,34 @@ exports.pay = (req,res) =>
         }
     });
 }
+
+exports.viewPayments = (req,res) =>
+{
+    var query = {};
+    if(req.query.admin=='false')
+    {
+        query = { username: req.query.username }
+    }
+    else
+    {
+        query = {};
+    }
+    Payment.find(query,(err,ans) =>
+    {
+        if(err)
+        {
+            res.status(500).send({ message: 'Error while fetching Payment Information', error: err });
+        }
+        else
+        {
+            if(ans)
+            {
+                res.status(200).send(ans);
+            }
+            else
+            {
+                res.status(404).send({ message: 'User does not exist, please register' });
+            }
+        }
+    })
+};

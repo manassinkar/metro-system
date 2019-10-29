@@ -36,4 +36,20 @@ export class AuthService {
         return user;
       }));
   }
+
+  viewProfile()
+  {
+    const user = localStorage.getItem('currentUser');
+    const userJ = JSON.parse(user);
+    const username = userJ.username;
+    return this.http.get<any>(`http://localhost:3000/user/viewProfile?username=`+username).pipe(map(user =>
+      {
+        return user;
+      }));
+  }
+
+  logout()
+  {
+    localStorage.removeItem('currentUser');
+  }
 }

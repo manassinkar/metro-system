@@ -6,8 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { AdminComponent } from './admin/admin.component';
-import { UserComponent } from './user/user.component';
 import { ReactiveFormsModule , FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -16,19 +14,23 @@ import { AddCouponComponent } from './add-coupon/add-coupon.component';
 import { ViewRoutesComponent } from './view-routes/view-routes.component';
 import { ViewCouponsComponent } from './view-coupons/view-coupons.component';
 import { AddBalanceComponent } from './add-balance/add-balance.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { ViewPaymentsComponent } from './view-payments/view-payments.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    AdminComponent,
-    UserComponent,
     AddRouteComponent,
     AddCouponComponent,
     ViewRoutesComponent,
     ViewCouponsComponent,
-    AddBalanceComponent
+    AddBalanceComponent,
+    DashboardComponent,
+    ViewProfileComponent,
+    ViewPaymentsComponent
   ],
   imports: [
     BrowserModule,

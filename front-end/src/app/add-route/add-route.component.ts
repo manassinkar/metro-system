@@ -43,7 +43,7 @@ export class AddRouteComponent implements OnInit {
     const price: string = this.addRouteForm.get('price').value;
     this.routeservice.addRoute(a,b,price).subscribe(
       res => {
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/dashboard']);
       },
       error => {
         this.errMsg=error.error.message;

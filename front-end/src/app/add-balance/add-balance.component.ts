@@ -18,8 +18,7 @@ export class AddBalanceComponent implements OnInit {
 
   ngOnInit() {
     this.addBalanceForm = this.fb.group({
-      username: [''],
-      password: ['']
+      walletBalance: ['']
     });
     this.step = 0;
   }

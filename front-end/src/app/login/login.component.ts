@@ -36,19 +36,17 @@ export class LoginComponent implements OnInit {
     const password: string = this.loginForm.get('password').value;
     this.authservice.login(username,password).subscribe(
       user => {
-        if(user.admin)
-        {
-          this.router.navigate(['/admin']);
-        }
-        else
-        {
-          this.router.navigate(['/user']);
-        }
+        this.router.navigate(['/dashboard']);
       },
       error => {
         this.errMsg=error.error.message;
       }
     );
+  }
+
+  register()
+  {
+    this.router.navigate(['/register']);
   }
 
 }
