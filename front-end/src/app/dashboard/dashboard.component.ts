@@ -29,10 +29,9 @@ export class DashboardComponent implements OnInit {
         {tag: 'View Profile', link: './viewProfile'},
         {tag: 'View All Payments', link: './viewPayments'},
         {tag: 'View Routes', link: './viewRoutes'},
-        {tag: 'Add Route', link: './addRoute'},
-        {tag: 'Add Coupon', link: './addCoupon'},
         {tag: 'View Coupons', link: './viewCoupons'},
-        {tag: 'Add Balance', link: './addBalance'}
+        {tag: 'Add Route', link: './addRoute'},
+        {tag: 'Add Coupon', link: './addCoupon'}
       ]
     },
   ]

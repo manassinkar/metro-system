@@ -16,6 +16,7 @@ export class AddBalanceComponent implements OnInit {
   public addBalanceForm: FormGroup;
   public errMsg:string="";
   public step = 0;
+  public currentWalletBalance:number=0;
   constructor(private authservice: AuthService, private fb: FormBuilder, public router: Router) { }
 
   ngOnInit() {
@@ -23,23 +24,23 @@ export class AddBalanceComponent implements OnInit {
       walletBalance: ['']
     });
     this.step = 0;
-    // this.getUser();
+    this.currentWalletBalance = 0;
+    this.getBalance();
   }
 
-  // getUser()
-  // {
-  //   this.authservice.viewProfile().subscribe(
-  //       user=>
-  //       {
-  //         this.user = user;
-  //         this.user.admin?this.role='Admin':this.role='Customer';
-  //       },
-  //       error=>
-  //       {
-  //         this.errMsg=error.error.message;
-  //       }
-  //   )
-  // }
+  getBalance()
+  {
+    this.authservice.viewProfile().subscribe(
+        user=>
+        {
+          this.currentWalletBalance = user.walletBalance;
+        },
+        error=>
+        {
+          this.errMsg=error.error.message;
+        }
+    )
+  }
 
 
   public get walletBalance()  {

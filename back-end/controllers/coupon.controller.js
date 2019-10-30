@@ -24,17 +24,24 @@ exports.addCoupon = (req,res) =>
                         timeAdded: new Date()
                     }
                 );
-                coupon.save((er) =>
+                if(req.body.percentageOff<0)
                 {
-                    if(er)
+                    res.status(401).send({ message: 'Invalid Percentage for Discount' });
+                }
+                else
+                {
+                    coupon.save((er) =>
                     {
-                        res.status(500).send({ message: 'Error while adding Coupon',error: er });
-                    }
-                    else
-                    {
-                        res.status(200).send({ message: 'Coupon added successfully' });
-                    }
-                })
+                        if(er)
+                        {
+                            res.status(500).send({ message: 'Error while adding Coupon',error: er });
+                        }
+                        else
+                        {
+                            res.status(200).send({ message: 'Coupon added successfully' });
+                        }
+                    });
+                }
             }
         }
     });

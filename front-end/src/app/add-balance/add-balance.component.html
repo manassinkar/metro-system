@@ -2,10 +2,10 @@
 <div class="container" *ngIf="step==0">
   <div class="jumbotron" style="margin: 15px;padding: 15px;">
     <form [formGroup]="addBalanceForm" (ngSubmit)="onSubmit()">
-        <!-- <div class="form-group">
+        <div class="form-group">
             <label>Current Balance: </label>
-            <input type="text" class="form-control" disabled placeholder="Rs {{user.walletBalance}}"><br>
-          </div>   -->
+            <input type="text" class="form-control" disabled placeholder="Rs {{currentWalletBalance}}"><br>
+          </div>  
       <div class="form-group">
           <label for="walletBalance">Amount to be Added: </label>
           <input type="number" class="form-control" id="walletBalance" formControlName="walletBalance" placeholder="Enter Amount in Rs"><br>

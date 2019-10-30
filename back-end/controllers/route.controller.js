@@ -2,7 +2,9 @@ const Route = require('../models/route.model');
 
 exports.addRoute = (req,res) =>
 {
-    Route.findOne({ $or: [{ a: req.body.a, b: req.body.b },{ b: req.body.a, a: req.body.b }] },(err,ans) =>
+    var s = req.body.a.toLowerCase().trim();
+    var d = req.body.b.toLowerCase().trim();
+    Route.findOne({ $or: [{ a: s, b: d },{ b: s, a: d }] },(err,ans) =>
     {
         if(err)
         {
@@ -18,8 +20,8 @@ exports.addRoute = (req,res) =>
             {
                 var route = new Route(
                     {
-                        a: req.body.a,
-                        b: req.body.b,
+                        a: s,
+                        b: d,
                         price: req.body.price
                     }
                 );

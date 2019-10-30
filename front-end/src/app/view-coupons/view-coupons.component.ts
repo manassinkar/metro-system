@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./view-coupons.component.css']
 })
 export class ViewCouponsComponent implements OnInit {
-  public coupons: [any];
+  public coupons: [];
   public errMsg: string;
   constructor(private couponservice: CouponService, public router: Router) { }
 
@@ -22,6 +22,7 @@ export class ViewCouponsComponent implements OnInit {
       coupons=>
       {
         this.coupons = coupons;
+        console.log(coupons);
       },
       error=>
       {

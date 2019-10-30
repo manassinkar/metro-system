@@ -5,19 +5,19 @@
             <th>Source</th>
             <th>Destination</th>
             <th>Price</th>
-            <th>Action</th>
+            <th *ngIf="!admin">Action</th>
         </tr>
         <tr *ngFor="let route of routes">
             <td>{{route.a}}</td>
             <td>{{route.b}}</td>
             <td>{{route.price}}</td>
-            <td><button (click)="selectRoute(route,0)" class="btn btn-primary" style="background-color: #DCDCDC;color: black;border-color: black;">Select Route</button></td>
+            <td *ngIf="!admin"><button (click)="selectRoute(route,0)" class="btn btn-primary" style="background-color: #DCDCDC;color: black;border-color: black;">Select Route</button></td>
         </tr>
         <tr *ngFor="let route of routes">
             <td>{{route.b}}</td>
             <td>{{route.a}}</td>
             <td>{{route.price}}</td>
-            <td><button (click)="selectRoute(route,1)" class="btn btn-primary" style="background-color: #DCDCDC;color: black;border-color: black;">Select Route</button></td>
+            <td *ngIf="!admin"><button (click)="selectRoute(route,1)" class="btn btn-primary" style="background-color: #DCDCDC;color: black;border-color: black;">Select Route</button></td>
         </tr>
     </table>
     <div class="alert alert-danger w-100 mt-3" *ngIf="errMsg && step==0">{{errMsg}}</div>

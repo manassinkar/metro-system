@@ -21,6 +21,7 @@ export class ViewRoutesComponent implements OnInit {
   public finalPrice = 0;
   public couponCode:string = '';
   public coupoCodeApplied: boolean = false;
+  public admin: boolean;
   constructor(private routeservice: RouteService,private couponservice: CouponService, private paymentservice: PaymentService, public router: Router) { }
 
   ngOnInit() {
@@ -32,6 +33,7 @@ export class ViewRoutesComponent implements OnInit {
     this.finalPrice = 0;
     this.couponCode = '';
     this.coupoCodeApplied = false;
+    this.admin = JSON.parse(localStorage.getItem('currentUser')).admin;
   }
 
   getRoutes()
