@@ -1,3 +1,4 @@
+<br><br>
 <div class="container">
     <form [formGroup]="addCouponForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
@@ -7,7 +8,7 @@
             <input type="number" class="form-control" id="percentoff" formControlName="percentoff"><br>
         </div>
         <div class="w-100" style="text-align: center">
-            <button type="submit" class="btn btn-primary">Add Coupon</button>
+            <button type="submit" class="btn btn-primary" style="background-color: #DCDCDC;color: black;border-color: black;">Add Coupon</button>
         </div>
         <div class="alert alert-danger w-100 mt-3" *ngIf="errMsg">{{errMsg}}</div>
     </form>

@@ -10,6 +10,8 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./add-balance.component.css']
 })
 export class AddBalanceComponent implements OnInit {
+  // public user: any;
+  // public role: string;
 
   public addBalanceForm: FormGroup;
   public errMsg:string="";
@@ -21,7 +23,24 @@ export class AddBalanceComponent implements OnInit {
       walletBalance: ['']
     });
     this.step = 0;
+    // this.getUser();
   }
+
+  // getUser()
+  // {
+  //   this.authservice.viewProfile().subscribe(
+  //       user=>
+  //       {
+  //         this.user = user;
+  //         this.user.admin?this.role='Admin':this.role='Customer';
+  //       },
+  //       error=>
+  //       {
+  //         this.errMsg=error.error.message;
+  //       }
+  //   )
+  // }
+
 
   public get walletBalance()  {
     return this.addBalanceForm.controls.walletBalance;
@@ -29,7 +48,7 @@ export class AddBalanceComponent implements OnInit {
 
   onSubmit()
   {
-    const walletBalance: string = this.addBalanceForm.get('walletBalance').value;
+    const walletBalance: number = this.addBalanceForm.get('walletBalance').value;
     this.authservice.addBalance(walletBalance).subscribe(
       res=>
       {

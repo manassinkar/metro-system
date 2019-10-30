@@ -1,15 +1,66 @@
 <div class="container">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="jumbotron" style="margin: 15px;padding: 15px;">  
+    <div>
+        <h1 class="h1 mb-3 font-weight-normal" style="text-align: center;">Metro Software System</h1>    </div>  
+    <!-- <div style="text-align: center;"><h3>LOGIN</h3></div>   -->
+    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div style="padding-left: 40%;">
+          <img class="mb-4" src="https://js.newsx.com/wp-content/uploads/2019/09/mmrcpic-070524-h6YJVueP-347x195.jpg" alt="" width="200" height="150">
+      </div>  
+        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center;">Please Sign In</h1>
+        <div class="form-row">
+            <div class="form-group col-md-4"></div>
+            <div class="form-group col-md-4">
+              <label for="username" class="sr-only">Username</label>
+              <input type="text" id="username" class="form-control" formControlName="username" placeholder="Username" required autofocus>
+            </div>
+            <div class="form-group col-md-4"></div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4"></div>
+            <div class="form-group col-md-4">
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" id="password" class="form-control" formControlName="password" placeholder="Password" required>
+            </div>
+            <div class="form-group col-md-4"></div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4"></div>
+            <div class="form-group col-md-4">
+                <div class="checkbox mb-3">
+                    <label>
+                      <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                  </div>
+            </div>
+            <div class="form-group col-md-4"></div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4"></div>
+            <div class="form-group col-md-4">
+                <div class="w-100" style="text-align: center">
+                    <button type="submit" class="btn btn-primary" style="background-color: #DCDCDC;color: black;border-color: black;">Login</button>
+                    &nbsp;&nbsp;
+                    <button class="btn btn-primary" (click)="register()" style="background-color: #DCDCDC;color: black;border-color: black;">Register</button>
+                </div>
+                <div class="alert alert-danger w-100 mt-3" *ngIf="errMsg">{{errMsg}}</div>
+            </div>
+            <div class="form-group col-md-4"></div>
+        </div>
+        
+      </form>
+  <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="username">Username: </label>
           <input type="text" class="form-control" id="username" formControlName="username"><br>
           <label for="password">Password: </label>
           <input type="password" class="form-control" id="password" formControlName="password"><br>
         </div>
-        <div class="w-100" style="text-align: center">
+        <div class="w-100" style="text-align: left">
             <button type="submit" class="btn btn-primary">Login</button>
+            &nbsp;&nbsp;
             <button class="btn btn-primary" (click)="register()">Register</button>
         </div>
         <div class="alert alert-danger w-100 mt-3" *ngIf="errMsg">{{errMsg}}</div>
-      </form>
+      </form> -->
 </div>

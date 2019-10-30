@@ -26,7 +26,7 @@ export class AuthService {
       }));
   }
 
-  addBalance(walletBalance:string)
+  addBalance(walletBalance:number)
   {
     const user = localStorage.getItem('currentUser');
     const userJ = JSON.parse(user);
